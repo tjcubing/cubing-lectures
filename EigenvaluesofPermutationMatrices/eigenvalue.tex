@@ -37,13 +37,14 @@
 
 \title{Eigenvalues of Permutation Matrices}
 \author{Stephen Huan}
+\date{April 27, 2020}
 
 \begin{document}
 \maketitle
 
 \section{Introduction}
 
-\textit{If you are confused, read \href{https://activities.tjhsst.edu/cubing/static/pdfs/Linearization/linear.pdf}{here} first}.
+\textit{If you are confused, read \href{https://activities.tjhsst.edu/cubing/static/pdfs/Linearization/linear.pdf}{this} first}.
 
 \section{Eigenvalues}
 
@@ -169,7 +170,7 @@ the zero vector, which is not an eigenvector by definition.
 Therefore, the only way to have an eigenvalue of -1 is if there exists at least
 one even length cycle, and if there is at least one even length cycle,
 it is possible to construct an eigenvector such that permuting the vector
-negates it, as dicussed above.
+negates it, as discussed above.
 \end{proof}
 
 \begin{lemma}
@@ -189,7 +190,7 @@ The number of eigenvectors a particular entry contributes is 1 for a cycle lengt
 1 for a cycle length of 2, and less than 1 for a length greater than 2.
 \end{lemma}
 \begin{proof}
-The only eigenvalues of permutation matricies are 1 and -1 by theorem 2,
+The only eigenvalues of permutation matrices are 1 and -1 by theorem 2,
 so we only need to consider the eigenvectors of eigenvalue 1 and -1.
 
 By lemma 4, eigenvalue 1 contributes the number of eigenvectors equal to
@@ -221,7 +222,7 @@ then the smallest \( k \) such that \( P_{\pi}^k = I \)
 is equal to \( \mathrm{lcm }(l_1, l_2, \ldots, l_n) \).
 \end{lemma}
 \begin{proof}
-Take an arbitrary cycle, and put a pointer at an arbitrary node. Mutiplying
+Take an arbitrary cycle, and put a pointer at an arbitrary node. Multiplying
 by the permutation matrix will move this pointer by one edge to the node
 it is directed towards, so it will take the length of the cycle to
 reach the start node again. Thus, for some cycle length \( l \) and some power \( k \),
@@ -252,10 +253,11 @@ length is \( \leq 2 \), making \( P \) diagonalizable.
 \end{proof}
 
 \section{Application}
-The common application for diagonalization is fast exponentation.
+The common application for diagonalization is fast exponentiation.
 
 \begin{lemma}
-The exponentation of a diagonal matrix is the exponentation of each entry on the diagonal.
+The exponentiation of a diagonal matrix is the exponentiation
+of each entry on the diagonal.
 \end{lemma}
 \begin{proof}
 Let the inductive hypothesis be that \[ D = \begin{bmatrix}
@@ -299,8 +301,8 @@ to the first power, the lemma is true for all integer powers \( \geq 1\).
 \end{proof}
 
 \begin{corollary}
-If exponentation to the power of \( k \) can be done in \( O(\log k) \),
-matrix exponentation of a diagonal matrix can be done in \( O(n \log k) \).
+If exponentiation to the power of \( k \) can be done in \( O(\log k) \),
+matrix exponentiation of a diagonal matrix can be done in \( O(n \log k) \).
 \end{corollary}
 
 \begin{theorem}
@@ -321,7 +323,7 @@ by corollary 3.1.
 
 The lower bound for general matrix multiplication is not known, but an obvious one is
 \( O(n^2) \). In general, it is \( O(n^z) \) for some \( 2 \leq z \leq 3 \).
-A matrix exponentation algorithm not relying on diagonalization is given
+A matrix exponentiation algorithm not relying on diagonalization is given
 below, instead using repeated squaring to achieve the same result.
 The running time is \( O(n^z \log k) \), which is worse than the
 \( O(n^z + n \log k ) \) time given by the diagonalization algorithm.
@@ -340,11 +342,13 @@ def mat_exp(A: np.array, k: int) -> list:
 \end{minted}
 \end{algorithm}
 
-However, note that it is possible to multiply two permutation matricies
-in \( O(n) \).
-Represent each permutation matrix by its permutation \( \pi \) of length \( n \).
-The algorithm for mutiplying two permutations \( \pi_1 \) and \( \pi_2 \) is then
-as follows: initialize an empty list. Then, going over each element \( e \) of \( \pi_2 \), append the value of \( \pi_1 \) at index \( e \) to the list.
+However, note that it is possible to multiply
+two permutation matrices in \( O(n) \).
+Represent each permutation matrix by its permutation \( \pi \)
+of length \( n \). The algorithm for multiplying two permutations \( \pi_1 \)
+and \( \pi_2 \) is then as follows: initialize an empty list.
+Then, going over each element \( e \) of \( \pi_2 \),
+append the value of \( \pi_1 \) at index \( e \) to the list.
 
 \begin{algorithm}
 \caption{Permutation Multiplication}
@@ -359,7 +363,7 @@ of \( O(n \log k + n^2) \), where the \( n^2 \) term is a result of
 turning a permutation into a permutation matrix and can be turned into
 \( O(n \log k) \) if one is willing to modify the original matrix.
 In diagonalization, however, one still needs to do general matrix multiplications,
-making the running time \( O(n \log k + n^z) \) asymptomically worse.
+making the running time \( O(n \log k + n^z) \) asymptotically worse.
 
 \printbibliography
 \end{document}
